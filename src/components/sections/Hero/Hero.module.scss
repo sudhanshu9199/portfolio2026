@@ -1,0 +1,57 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.heroSection {
+  position: relative;
+  width: 100%;
+  // > 100vh height: using 130vh (with dvh fallback for dynamic mobile address bar)
+  min-height: 130vh;
+  min-height: 130dvh;
+  padding: 0 1.5rem;
+}
+
+// Stays locked in view while scrolling through the extra height
+.stickyContent {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.headlineWrapper {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.tagline {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $accent-secondary;
+  font-weight: 600;
+}
+
+.title {
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+
+  span {
+    background: $accent-gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.subtext {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: $text-secondary;
+  max-width: 550px;
+}

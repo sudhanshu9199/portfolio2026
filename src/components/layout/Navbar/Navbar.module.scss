@@ -1,0 +1,63 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.25rem 2rem;
+  transition: $transition-smooth;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  @include glass-card(20px, rgba(15, 15, 20, 0.65));
+  border-radius: $radius-full;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  span {
+    color: $accent-primary;
+  }
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+
+  a {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    transition: $transition-smooth;
+
+    &:hover {
+      color: $text-primary;
+    }
+  }
+
+  .ctaButton {
+    padding: 0.5rem 1.25rem;
+    background: $text-primary;
+    color: $bg-primary;
+    border-radius: $radius-full;
+    font-weight: 600;
+
+    &:hover {
+      background: $accent-primary;
+      color: #fff;
+    }
+  }
+}
