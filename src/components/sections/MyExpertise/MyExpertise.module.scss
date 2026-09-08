@@ -1,0 +1,637 @@
+.MyExpertise {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f4ea;
+  color: #000000;
+  padding: clamp(4rem, 8vh, 6rem) 5.5rem;
+  display: flex;
+  flex-direction: column;
+  //   align-items: center;
+}
+
+.smallLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  //   padding: 0.45rem 1.15rem 0.45rem 0.75rem;
+  //   border-radius: 999px;
+  //   background: rgba(255, 255, 255, 0.75);
+  //   backdrop-filter: blur(8px);
+  //   border: 1px solid rgba(0, 0, 0, 0.08);
+  //   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+    height: 24px;
+    width: auto;
+  }
+
+  .label {
+    font-size: 1.5rem;
+    // font-weight: 600;
+    color: #111111;
+    letter-spacing: -0.01em;
+    margin: 0;
+    text-transform: capitalize;
+  }
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 1.25rem;
+  gap: 2rem;
+
+  @media (max-width: 860px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+}
+
+.mainHeading {
+  font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  text-transform: capitalize;
+
+  .accentText {
+    position: relative;
+    display: inline-block;
+    color: #fe9f0a;
+
+    .headingLeaf {
+      position: absolute;
+      top: -0.4em;
+      right: -0.58em;
+      width: 0.6em;
+      height: auto;
+      color: #18181b;
+      pointer-events: none;
+    }
+  }
+
+  span {
+    color: #fe9f0a;
+  }
+}
+
+.exploreBtn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #141416;
+  border-radius: 999px;
+  padding: 4px;
+  text-decoration: none;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+
+  &:hover {
+    // transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(254, 159, 10, 0.22);
+
+    .exploreArrowCircle svg {
+      transform: translateX(3px);
+    }
+  }
+
+  .exploreText {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fe9f0a;
+    color: #141416;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.6rem;
+    border-radius: 999px;
+    border: 1.5px solid #141416;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+
+  .exploreArrowCircle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #141416;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 4px 0 8px;
+    flex-shrink: 0;
+
+    svg {
+      transition: transform 0.2s ease;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .exploreText {
+      font-size: 0.92rem;
+      padding: 0.65rem 1.25rem;
+    }
+
+    .exploreArrowCircle {
+      width: 38px;
+      height: 38px;
+
+      svg {
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+}
+
+.cardsWrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+// ----------------------------------------------------
+// Individual Accordion Card
+// ----------------------------------------------------
+.card {
+  position: relative;
+  width: 100%;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  cursor: pointer;
+
+  // Exact polygon matching reference design (desktop)
+  clip-path: polygon(
+    0 26px,
+    18px 10px,
+    170px 10px,
+    200px 0,
+    calc(100% - 22px) 0,
+    100% 22px,
+    100% calc(100% - 22px),
+    calc(100% - 22px) 100%,
+    180px 100%,
+    150px calc(100% - 16px),
+    18px calc(100% - 16px),
+    0 calc(100% - 32px)
+  );
+
+  @media (max-width: 800px) {
+    clip-path: polygon(
+      0 20px,
+      14px 8px,
+      120px 8px,
+      145px 0,
+      calc(100% - 18px) 0,
+      100% 18px,
+      100% calc(100% - 18px),
+      calc(100% - 18px) 100%,
+      135px 100%,
+      115px calc(100% - 12px),
+      14px calc(100% - 12px),
+      0 calc(100% - 24px)
+    );
+  }
+
+  @media (max-width: 600px) {
+    clip-path: none;
+    border-radius: 20px;
+  }
+}
+
+// Collapsed State (Clean White)
+.collapsedCard {
+  background-color: #ffffff;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.04));
+  color: #111111;
+
+  &:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.07));
+
+    .arrowButton {
+      transform: scale(1.08) rotate(45deg);
+    }
+  }
+
+  .cardHeader {
+    .dashedConnector {
+      border-top: 1.5px dashed rgba(0, 0, 0, 0.28);
+    }
+  }
+}
+
+// Active / Expanded State (Rich Black)
+.activeCard {
+  background-color: #141416;
+  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.22));
+  color: #ffffff;
+
+  .cardHeader {
+    .cardTitle {
+      color: #ffffff;
+    }
+
+    .numberBadge {
+      border-color: rgba(255, 255, 255, 0.38);
+      background: rgba(254, 159, 10, 0.1);
+    }
+
+    .dashedConnector {
+      border-top: 1.5px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    .arrowButton {
+      transform: rotate(45deg);
+    }
+  }
+
+  &:hover {
+    .arrowButton {
+      transform: rotate(45deg) scale(1.08);
+    }
+  }
+}
+
+// ----------------------------------------------------
+// Card Header (Always Visible)
+// ----------------------------------------------------
+.cardHeader {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem 2.25rem 1.25rem 1.75rem;
+  min-height: 84px;
+  gap: 1rem;
+  user-select: none;
+
+  @media (max-width: 600px) {
+    padding: 1.15rem 1.25rem;
+    gap: 0.75rem;
+  }
+}
+
+.numberCol {
+  display: flex;
+  align-items: center;
+  width: 175px;
+  flex-shrink: 0;
+
+  @media (max-width: 800px) {
+    width: 120px;
+  }
+
+  @media (max-width: 600px) {
+    width: auto;
+  }
+}
+
+.numberBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.42rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fe9f0a;
+  border: 1.5px dashed rgba(0, 0, 0, 0.28);
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+
+  @media (max-width: 600px) {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.92rem;
+  }
+}
+
+.dashedConnector {
+  flex: 1;
+  height: 1px;
+  margin-left: 0.85rem;
+  transition: border-color 0.25s ease;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.cardTitle {
+  font-size: clamp(1.3rem, 2.3vw, 1.95rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin: 0;
+  flex: 1;
+  color: #111111;
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.arrowButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #fe9f0a;
+  color: #141416;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(254, 159, 10, 0.3);
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.2s ease;
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  @media (max-width: 600px) {
+    width: 38px;
+    height: 38px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+}
+
+// ----------------------------------------------------
+// Card Accordion Collapse Wrapper
+// ----------------------------------------------------
+.cardCollapseWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease,
+    visibility 0.4s ease;
+}
+
+.activeCard .cardCollapseWrapper {
+  grid-template-rows: 1fr;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cardBody {
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 2.25rem 2.25rem calc(175px + 2.75rem);
+
+  @media (max-width: 800px) {
+    padding: 0 1.75rem 2rem calc(120px + 2.5rem);
+  }
+
+  @media (max-width: 600px) {
+    padding: 0 1.25rem 1.75rem 1.25rem;
+  }
+}
+
+// ----------------------------------------------------
+// Expanded Content: Badges
+// ----------------------------------------------------
+.badgeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 1.25rem;
+}
+
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 1.15rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(254, 159, 10, 0.12);
+    border-color: rgba(254, 159, 10, 0.4);
+    color: #fe9f0a;
+  }
+
+  @media (max-width: 600px) {
+    padding: 0.32rem 0.85rem;
+    font-size: 0.82rem;
+  }
+}
+
+// ----------------------------------------------------
+// Expanded Content: Description
+// ----------------------------------------------------
+.descriptionText {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 760px;
+  margin: 0 0 1.75rem 0;
+  letter-spacing: -0.01em;
+
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+// ----------------------------------------------------
+// Expanded Content: Developer Showcase Elements
+// ----------------------------------------------------
+.developerShowcase {
+  margin-top: 0.5rem;
+}
+
+// 01: Logos Row
+.logosRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.logoItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1.05rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  svg {
+    color: #fe9f0a;
+  }
+}
+
+// 02: AI Nodes Row
+.aiNodesRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.aiCodeTag {
+  padding: 0.4rem 0.95rem;
+  border-radius: 8px;
+  background: rgba(254, 159, 10, 0.12);
+  color: #fe9f0a;
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1px solid rgba(254, 159, 10, 0.35);
+  letter-spacing: 0.05em;
+}
+
+.nodesChain {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nodeChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.nodeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #fe9f0a;
+  box-shadow: 0 0 8px rgba(254, 159, 10, 0.8);
+}
+
+.nodeConnector {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.9rem;
+}
+
+// 03: Frontend Metrics
+.metricsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.metricItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.metricVal {
+  font-weight: 700;
+  color: #fe9f0a;
+  font-size: 0.9rem;
+}
+
+.metricLabel {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.85rem;
+}
+
+// 04: Architecture Flow
+.architectureFlow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.archBox {
+  padding: 0.38rem 0.9rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+}
+
+.archArrow {
+  color: #fe9f0a;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+// 05: Performance Badges
+.perfRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.perfBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.42rem 0.95rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.perfScore {
+  font-weight: 800;
+  color: #34d399;
+  font-size: 0.95rem;
+}
+
+.perfName {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+}

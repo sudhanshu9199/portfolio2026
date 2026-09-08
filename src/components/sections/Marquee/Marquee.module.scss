@@ -1,0 +1,50 @@
+.marqueeContainer {
+  position: relative;
+  width: 100%;
+  height: clamp(4rem, 6.2vh, 4.6rem);
+  background: #000000;
+  border-bottom: 2.5px solid #fe9f0a;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  z-index: 10;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  will-change: transform;
+}
+
+.marqueeGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.marqueeText {
+  color: #ffffff;
+  font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+  font-weight: 750;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.flowerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 clamp(1.4rem, 2.6vw, 2.5rem);
+  flex-shrink: 0;
+
+  svg {
+    width: clamp(24px, 2.2vw, 32px);
+    height: clamp(24px, 2.2vw, 32px);
+    display: block;
+    filter: drop-shadow(0 0 4px rgba(254, 159, 10, 0.2));
+  }
+}
