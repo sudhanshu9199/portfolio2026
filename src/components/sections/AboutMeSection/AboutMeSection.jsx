@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import BrandIcon from "@/components/common/BrandIcon";
 import LeafAccent from "@/components/common/LeafAccent";
+import CapsuleJarPhysics from "./CapsuleJarPhysics";
 import styles from "./AboutMeSection.module.scss";
 
 const skillsCapsules = [
@@ -9,49 +10,64 @@ const skillsCapsules = [
     id: "react",
     name: "React",
     theme: "dark",
-    rotate: "-7deg",
-    top: "42%",
-    left: "10%",
+    rotate: "-12deg",
+    top: "58%",
+    left: "7%",
+    zIndex: 11,
   },
   {
     id: "nextjs",
     name: "Next.js",
-    theme: "orange",
-    rotate: "4deg",
-    top: "48%",
-    left: "38%",
+    theme: "dark",
+    rotate: "-8deg",
+    top: "56%",
+    left: "58%",
+    zIndex: 12,
   },
   {
     id: "nodejs",
     name: "Node.js",
-    theme: "dark",
-    rotate: "8deg",
-    top: "38%",
-    left: "64%",
+    theme: "orange",
+    rotate: "-3deg",
+    top: "71%",
+    left: "59%",
+    zIndex: 9,
   },
   {
     id: "aiml",
     name: "AI / ML",
     theme: "orange",
-    rotate: "-5deg",
-    top: "58%",
-    left: "12%",
+    rotate: "14deg",
+    top: "73%",
+    left: "3%",
+    zIndex: 9,
   },
   {
     id: "mongodb",
     name: "MongoDB",
     theme: "dark",
-    rotate: "-3deg",
-    top: "62%",
-    left: "36%",
+    rotate: "-17deg",
+    top: "72.5%",
+    left: "32%",
+    zIndex: 10,
   },
   {
     id: "git",
     name: "Git / GitHub",
+    theme: "dark",
+    rotate: "-14deg",
+    top: "84%",
+    left: "60%",
+    zIndex: 8,
+  },
+  {
+    id: "fullstack",
+    name: "Full Stack",
     theme: "orange",
-    rotate: "3deg",
-    top: "72%",
-    left: "28%",
+    rotate: "-1deg",
+    top: "87%",
+    left: "26%",
+    zIndex: 7,
   },
 ];
 
@@ -96,23 +112,8 @@ const AboutMeSection = () => {
                 className={styles.portraitImg}
               />
 
-              {/* Floating Skill Capsules with cursor-animation ready wrapper */}
-              <div className={styles.capsulesCluster}>
-                {skillsCapsules.map((capsule) => (
-                  <div
-                    key={capsule.id}
-                    className={`${styles.capsule} ${styles[capsule.theme]}`}
-                    style={{
-                      top: capsule.top,
-                      left: capsule.left,
-                      transform: `rotate(${capsule.rotate})`,
-                    }}
-                    data-capsule-id={capsule.id}
-                  >
-                    <span>{capsule.name}</span>
-                  </div>
-                ))}
-              </div>
+              {/* Interactive Physics "Jar" of Skill Capsules */}
+              <CapsuleJarPhysics capsules={skillsCapsules} />
             </div>
           </div>
 
