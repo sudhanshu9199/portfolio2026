@@ -1,0 +1,445 @@
+.skillsProficiency {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f4ea;
+  color: #18181b;
+  padding: clamp(4.5rem, 8vh, 6.5rem) clamp(1.5rem, 5.5vw, 5.5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 960px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+// ----------------------------------------------------
+// Centered Category Label Pill
+// ----------------------------------------------------
+.smallLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+
+  .labelText {
+    font-size: clamp(1.05rem, 1.35vw, 1.25rem);
+    font-weight: 500;
+    color: #18181b;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin: 0;
+  }
+}
+
+// ----------------------------------------------------
+// Main Centered Heading
+// ----------------------------------------------------
+.heading {
+  font-size: clamp(2.3rem, 4.8vw, 3.85rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.accentRow {
+  position: relative;
+  display: inline-block;
+  color: #fe9f0a;
+  white-space: nowrap;
+
+  .headingLeaf {
+    position: absolute;
+    top: -0.36em;
+    right: -0.58em;
+    width: 0.52em;
+    height: auto;
+    color: #18181b;
+    pointer-events: none;
+  }
+}
+
+.darkRow {
+  display: block;
+  color: #18181b;
+  letter-spacing: -0.03em;
+}
+
+// ----------------------------------------------------
+// 9-Card Grid (3x3 Layout)
+// ----------------------------------------------------
+.cardGrid {
+  width: 100%;
+  max-width: 1240px;
+  margin-top: clamp(2.5rem, 5vh, 4rem);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.65rem;
+
+  @media (max-width: 1040px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+// Shape clipping polygon (double chamfer top-left, stepped right edge, rounded corners)
+$card-clip: polygon(
+  /* Top-left double chamfer start */
+  42px 0%,
+  /* Top edge to top-right corner */
+  calc(100% - 26px) 0%,
+  calc(100% - 18px) 4px,
+  calc(100% - 14px) 11px,
+  calc(100% - 12px) 20px,
+  /* Indented upper-right vertical edge */
+  calc(100% - 12px) 46%,
+  /* 45° transition step to outer right */
+  100% 52%,
+  /* Lower-right vertical edge to bottom-right corner */
+  100% calc(100% - 20px),
+  calc(100% - 3px) calc(100% - 10px),
+  calc(100% - 10px) calc(100% - 3px),
+  calc(100% - 20px) 100%,
+  /* Bottom edge to bottom-left corner */
+  20px 100%,
+  10px calc(100% - 3px),
+  3px calc(100% - 10px),
+  0% calc(100% - 20px),
+  /* Main left vertical edge up to lower chamfer */
+  0% 120px,
+  /* Lower 45° chamfer */
+  16px 104px,
+  /* Intermediate vertical step */
+  16px 36px,
+  /* Upper 45° chamfer back to top edge */
+  38px 0%
+);
+
+// ----------------------------------------------------
+// Individual Skill Card (Option A Outer Tech Shape)
+// ----------------------------------------------------
+.cardWrapper {
+  position: relative;
+  height: 250px;
+  cursor: pointer;
+  outline: none;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.035));
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover,
+  &.active,
+  &:focus-visible {
+    transform: translateY(-4px);
+    filter:
+      drop-shadow(0 16px 32px rgba(0, 0, 0, 0.065))
+      drop-shadow(0 0 16px rgba(254, 159, 10, 0.14));
+
+    .card {
+      background: rgba(254, 159, 10, 0.5);
+    }
+
+    .logoCircle {
+      top: 1.45rem;
+      left: 2.1rem;
+      width: 42px;
+      height: 42px;
+      transform: translateY(0);
+      border-color: #fe9f0a;
+      box-shadow: 0 0 14px rgba(254, 159, 10, 0.25);
+    }
+
+    .namePill {
+      top: 4.8rem;
+      left: 2.1rem;
+      transform: translateY(0);
+      background: #f4f2e8;
+      border-color: rgba(24, 24, 27, 0.12);
+    }
+
+    .levelBadge {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    .descriptionWrapper {
+      margin-top: 1rem;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .bottomLine {
+      box-shadow: 0 0 10px rgba(254, 159, 10, 0.45);
+    }
+  }
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(24, 24, 27, 0.09);
+  clip-path: $card-clip;
+  transition: background 0.3s ease;
+}
+
+.cardInner {
+  position: absolute;
+  inset: 1.5px;
+  background: #ffffff;
+  clip-path: inherit;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+// ----------------------------------------------------
+// Normal State Elements
+// ----------------------------------------------------
+
+// 1. Logo Circle
+.logoCircle {
+  position: absolute;
+  top: 50%;
+  left: 1.65rem;
+  width: 58px;
+  height: 58px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #18181b;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(254, 159, 10, 0.25);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  transition:
+    top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  svg {
+    transition: transform 0.35s ease;
+  }
+}
+
+// 2. Name Pill
+.namePill {
+  position: absolute;
+  top: 50%;
+  left: 6.5rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: 999px;
+  background: #f5f4ea;
+  border: 1.5px solid rgba(24, 24, 27, 0.08);
+  white-space: nowrap;
+  transition:
+    top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s ease,
+    border-color 0.3s ease;
+
+  .cardIndex {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fe9f0a;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cardSeparator {
+    color: rgba(24, 24, 27, 0.25);
+    font-size: 0.85rem;
+  }
+
+  .cardName {
+    font-size: 1.05rem;
+    font-weight: 750;
+    color: #18181b;
+    letter-spacing: -0.015em;
+  }
+}
+
+// 3. Level Badge (Top-Right on Hover)
+.levelBadge {
+  position: absolute;
+  top: 1.4rem;
+  right: 2rem;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.9);
+  pointer-events: none;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.level_core {
+    background: rgba(254, 159, 10, 0.15);
+    color: #c2410c;
+    border: 1px solid rgba(254, 159, 10, 0.45);
+  }
+
+  &.level_strong {
+    background: rgba(24, 24, 27, 0.08);
+    color: #18181b;
+    border: 1px solid rgba(24, 24, 27, 0.2);
+  }
+
+  &.level_intermediate {
+    background: rgba(100, 100, 110, 0.08);
+    color: #4b5563;
+    border: 1px solid rgba(100, 100, 110, 0.22);
+  }
+
+  &.level_exploring {
+    background: rgba(99, 102, 241, 0.08);
+    color: #4f46e5;
+    border: 1px solid rgba(99, 102, 241, 0.25);
+  }
+}
+
+// 4. Description Wrapper
+.descriptionWrapper {
+  position: absolute;
+  top: 7.25rem;
+  left: 2rem;
+  right: 2rem;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.04s,
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1) 0.04s;
+
+  .description {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(24, 24, 27, 0.72);
+    font-weight: 450;
+    margin: 0;
+    text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// 5. Permanent Bottom Line
+.bottomLine {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 2rem;
+  right: 2rem;
+  height: 2.5px;
+  background: #fe9f0a;
+  border-radius: 999px;
+  transition: box-shadow 0.3s ease;
+}
+
+// ----------------------------------------------------
+// Responsive Screen Adjustments
+// ----------------------------------------------------
+@media (max-width: 1040px) {
+  .cardWrapper {
+    height: 245px;
+  }
+}
+
+@media (max-width: 680px) {
+  .cardWrapper {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoCircle {
+    left: 1.5rem;
+    width: 52px;
+    height: 52px;
+  }
+
+  .namePill {
+    left: 5.6rem;
+    padding: 0.45rem 0.95rem;
+
+    .cardName {
+      font-size: 0.96rem;
+    }
+  }
+
+  .cardWrapper {
+    &:hover,
+    &.active {
+      .logoCircle {
+        top: 1.35rem;
+        left: 1.85rem;
+        width: 38px;
+        height: 38px;
+      }
+
+      .namePill {
+        top: 4.45rem;
+        left: 1.85rem;
+      }
+
+      .descriptionWrapper {
+        top: 6.9rem;
+        left: 1.85rem;
+        right: 1.85rem;
+      }
+
+      .levelBadge {
+        right: 1.85rem;
+      }
+
+      .bottomLine {
+        left: 1.85rem;
+        right: 1.85rem;
+      }
+    }
+  }
+}
