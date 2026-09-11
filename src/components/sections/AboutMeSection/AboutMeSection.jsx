@@ -104,7 +104,7 @@ const AboutMeSection = () => {
           <div className={styles.imageCol}>
             <div className={styles.imageWrapper}>
               <Image
-                src="/assets/aboutMe2.png"
+                src="/assets/aboutMe3.png"
                 alt="Sudhanshu - Full Stack & AI Developer"
                 width={620}
                 height={620}

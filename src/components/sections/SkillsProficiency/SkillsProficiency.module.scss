@@ -111,35 +111,25 @@
 
 // Shape clipping polygon (double chamfer top-left, stepped right edge, rounded corners)
 $card-clip: polygon(
-  /* Top-left double chamfer start */
-  42px 0%,
-  /* Top edge to top-right corner */
-  calc(100% - 26px) 0%,
+  /* Top-left double chamfer start */ 42px 0%,
+  /* Top edge to top-right corner */ calc(100% - 26px) 0%,
   calc(100% - 18px) 4px,
   calc(100% - 14px) 11px,
   calc(100% - 12px) 20px,
-  /* Indented upper-right vertical edge */
-  calc(100% - 12px) 46%,
-  /* 45° transition step to outer right */
-  100% 52%,
-  /* Lower-right vertical edge to bottom-right corner */
-  100% calc(100% - 20px),
+  /* Indented upper-right vertical edge */ calc(100% - 12px) 46%,
+  /* 45° transition step to outer right */ 100% 52%,
+  /* Lower-right vertical edge to bottom-right corner */ 100% calc(100% - 20px),
   calc(100% - 3px) calc(100% - 10px),
   calc(100% - 10px) calc(100% - 3px),
   calc(100% - 20px) 100%,
-  /* Bottom edge to bottom-left corner */
-  20px 100%,
+  /* Bottom edge to bottom-left corner */ 20px 100%,
   10px calc(100% - 3px),
   3px calc(100% - 10px),
   0% calc(100% - 20px),
-  /* Main left vertical edge up to lower chamfer */
-  0% 120px,
-  /* Lower 45° chamfer */
-  16px 104px,
-  /* Intermediate vertical step */
-  16px 36px,
-  /* Upper 45° chamfer back to top edge */
-  38px 0%
+  /* Main left vertical edge up to lower chamfer */ 0% 120px,
+  /* Lower 45° chamfer */ 16px 104px,
+  /* Intermediate vertical step */ 16px 36px,
+  /* Upper 45° chamfer back to top edge */ 38px 0%
 );
 
 // ----------------------------------------------------
@@ -147,7 +137,7 @@ $card-clip: polygon(
 // ----------------------------------------------------
 .cardWrapper {
   position: relative;
-  height: 250px;
+  height: 228px;
   cursor: pointer;
   outline: none;
   filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.035));
@@ -159,8 +149,7 @@ $card-clip: polygon(
   &.active,
   &:focus-visible {
     transform: translateY(-4px);
-    filter:
-      drop-shadow(0 16px 32px rgba(0, 0, 0, 0.065))
+    filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.065))
       drop-shadow(0 0 16px rgba(254, 159, 10, 0.14));
 
     .card {

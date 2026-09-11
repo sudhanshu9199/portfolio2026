@@ -235,7 +235,7 @@ export default function Hero() {
 
                 {/* LinkedIn */}
                 <a
-                  href="https://linkedin.com/in/sudhanshu-ghosh"
+                  href="https://linkedin.com/in/sudhanshu9199"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIconBtn}
