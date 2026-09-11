@@ -322,19 +322,26 @@
   }
 }
 
-.signatureText {
-  font-family:
-    "Segoe Script", "Brush Script MT", "Caveat", "Snell Roundhand", cursive,
-    sans-serif;
-  font-size: clamp(2.2rem, 3.4vw, 3rem);
-  color: #ffffff;
-  font-weight: 400;
-  font-style: italic;
-  transform: rotate(-5deg);
-  opacity: 0.92;
+.signatureWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   user-select: none;
-  line-height: 1;
-  letter-spacing: 0.02em;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: scale(1.04);
+  }
+}
+
+.signatureImg {
+  width: clamp(160px, 18vw, 240px);
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 10px rgba(254, 159, 10, 0.18));
+  opacity: 0.95;
+  pointer-events: none;
+  transition: opacity 0.25s ease, filter 0.25s ease;
 }
 
 // ----------------------------------------------------

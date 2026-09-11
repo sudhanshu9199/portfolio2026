@@ -173,7 +173,15 @@ const AboutMeSection = () => {
                 </span>
               </a>
 
-              <span className={styles.signatureText}>Sudhanshu</span>
+              <div className={styles.signatureWrapper}>
+                <Image
+                  src="/assets/sudhanshu-Signature.png"
+                  alt="Sudhanshu Ghosh Signature"
+                  width={389}
+                  height={61}
+                  className={styles.signatureImg}
+                />
+              </div>
             </div>
           </div>
         </div>
