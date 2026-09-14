@@ -1,0 +1,58 @@
+export const projectsData = [
+  {
+    id: "connectx",
+    title: "ConnectX — Real-Time Communication Platform",
+    description:
+      "A real-time communication platform where users can connect through chat, voice calls, and video calls, with adaptive video quality and AI-powered reply suggestions.",
+    tags: ["FULL STACK", "REAL-TIME", "AI"],
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "Socket.io",
+      "WebRTC",
+      "Redux Toolkit",
+      "Generative AI",
+    ],
+    contribution: "Full-Stack Development",
+    image: "/assets/projects/connectx.jpg",
+    liveDemoUrl: "https://connectx-chat-with.netlify.app/",
+    githubUrl: "https://github.com/sudhanshu9199/chat-APP-Like",
+    layout: "showcase-left",
+    notchPosition: "right",
+  },
+  {
+    id: "aura-ai",
+    title: "AURA — AI Conversational Assistant",
+    description:
+      "An AI chat application powered by Gemini, designed for natural conversations with context-aware responses based on previous chats.",
+    tags: ["AI", "FULL STACK", "GEMINI"],
+    technologies: ["React", "JavaScript", "Gemini API", "AI Integration"],
+    contribution: "Full-Stack Development",
+    image: "/assets/projects/aura-ai.jpg",
+    liveDemoUrl: "https://first-chatbot-ai.netlify.app/",
+    githubUrl: "https://github.com/sudhanshu9199/AI-ChatBot",
+    layout: "content-left",
+    notchPosition: "left",
+  },
+  {
+    id: "caption-generator-ai",
+    title: "Caption Generator AI",
+    description:
+      "An AI-powered application that analyzes uploaded images and generates personalized, playful captions designed to make social media posts more engaging and unique.",
+    tags: ["AI", "FULL STACK", "MULTIMODAL"],
+    technologies: [
+      "React",
+      "Vite",
+      "MongoDB",
+      "JWT",
+      "AI API",
+      "Prompt Engineering",
+    ],
+    contribution: "Full-Stack Development",
+    image: "/assets/projects/caption-ai.jpg",
+    liveDemoUrl: "https://caption-generator-ai.netlify.app/",
+    githubUrl: "https://github.com/sudhanshu9199/caption-generator-AI",
+    layout: "showcase-left",
+    notchPosition: "right",
+  },
+];
