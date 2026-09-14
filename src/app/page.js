@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar/Navbar";
 import AboutMeSection from "@/components/sections/AboutMeSection/AboutMeSection";
+import Contact from "@/components/sections/Contact/Contact";
 import Hero from "@/components/sections/Hero/Hero";
 import Marquee from "@/components/sections/Marquee/Marquee";
 import MyExpertise from "@/components/sections/MyExpertise/MyExpertise";
@@ -16,6 +17,7 @@ export default function Home() {
       <AboutMeSection />
       <SkillsProficiency />
       <Projects />
+      <Contact />
     </main>
   );
 }

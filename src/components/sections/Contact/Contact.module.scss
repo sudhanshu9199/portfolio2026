@@ -1,0 +1,635 @@
+// ----------------------------------------------------
+// Contact Section - 2026 Trendy Motion Design
+// ----------------------------------------------------
+
+// Outer Shape Clipping Polygons
+$c: 32px;
+$nw: 14px;
+$nh: 36px;
+
+// Dark Info Card Tech Polygon (Top Chamfers, Right Edge Stepped Notch, Bottom Chamfers)
+$info-card-clip: polygon(
+  $c 0%,
+  calc(100% - #{$c}) 0%,
+  100% $c,
+  100% calc(50% - #{$nh} / 2 - #{$nw}),
+  calc(100% - #{$nw}) calc(50% - #{$nh} / 2),
+  calc(100% - #{$nw}) calc(50% + #{$nh} / 2),
+  100% calc(50% + #{$nh} / 2 + #{$nw}),
+  100% calc(100% - #{$c}),
+  calc(100% - #{$c}) 100%,
+  $c 100%,
+  0% calc(100% - #{$c}),
+  0% $c
+);
+
+// Orange Social Card Polygon (Chamfered Bottom-Left Corner)
+$social-card-clip: polygon(
+  16px 0%,
+  calc(100% - 16px) 0%,
+  100% 16px,
+  100% calc(100% - 16px),
+  calc(100% - 16px) 100%,
+  36px 100%,
+  0% calc(100% - 36px),
+  0% 16px
+);
+
+.contactSection {
+  width: 100%;
+  min-height: auto;
+  background-color: #f5f4ea; // Warm cream/beige background matching reference image
+  color: #18181b;
+  padding: clamp(4.5rem, 8vh, 6.5rem) clamp(1.5rem, 5.5vw, 5.5rem);
+  position: relative;
+  overflow: hidden;
+
+  @media (max-width: 960px) {
+    padding: 4rem 2rem;
+  }
+
+  @media (max-width: 600px) {
+    padding: 3.5rem 1.25rem;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// ----------------------------------------------------
+// Top Header: Category & Heading (Centered)
+// ----------------------------------------------------
+.topHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(2.75rem, 5vw, 4rem);
+}
+
+// Small Brand Label
+.smallLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+
+  .brandIcon {
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.08));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    &:hover {
+      transform: rotate(180deg) scale(1.1);
+    }
+  }
+
+  .labelText {
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    font-weight: 500;
+    color: #18181b;
+    letter-spacing: -0.01em;
+    user-select: none;
+  }
+}
+
+// Main Heading
+.heading {
+  font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0;
+
+  .headingLine {
+    display: block;
+  }
+
+  .orangeText {
+    color: #fe9f0a;
+  }
+
+  .darkText {
+    color: #18181b;
+  }
+
+  .leafWrapper {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 0.35rem;
+    will-change: transform;
+    cursor: pointer;
+    animation: leafSway 4.5s ease-in-out infinite alternate;
+  }
+
+  .headingLeaf {
+    width: 0.52em;
+    height: auto;
+    color: #18181b;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+}
+
+// ----------------------------------------------------
+// 2-Column Grid: Form (Left) & Cards (Right)
+// ----------------------------------------------------
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1.28fr 0.72fr;
+  gap: clamp(2.5rem, 4.5vw, 4.5rem);
+  width: 100%;
+  align-items: start;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+// ----------------------------------------------------
+// Left Column: Direct Recruiter Email + Form
+// ----------------------------------------------------
+.formCol {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+// Direct Email Fast-Action Callout (Recruiter Friendly)
+.directEmailBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border: 1.5px solid rgba(24, 24, 27, 0.08);
+  border-radius: 14px;
+  padding: 0.85rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  gap: 1rem;
+  flex-wrap: wrap;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    border-color: rgba(254, 159, 10, 0.4);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  }
+
+  .directEmailLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+  }
+
+  .emailPulseDot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #10b981;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    animation: pulseDot 2s infinite;
+    flex-shrink: 0;
+  }
+
+  .directEmailLabel {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #71717a;
+  }
+
+  .directEmailLink {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #18181b;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #fe9f0a;
+    }
+  }
+
+  .copyEmailBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background-color: #18181b;
+    color: #ffffff;
+    font-size: 0.84rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      transform 0.18s ease;
+    flex-shrink: 0;
+
+    .copyIcon,
+    .checkIcon {
+      width: 14px;
+      height: 14px;
+    }
+
+    &:hover {
+      background-color: #fe9f0a;
+      color: #14100c;
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0) scale(0.96);
+    }
+
+    &.copied {
+      background-color: #10b981;
+      color: #ffffff;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+
+    .copyEmailBtn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}
+
+// Contact Form
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.fieldLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #18181b;
+  letter-spacing: -0.01em;
+}
+
+.inputField,
+.selectField,
+.textareaField {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1.5px solid rgba(24, 24, 27, 0.08);
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  font-size: 0.95rem;
+  color: #18181b;
+  font-family: inherit;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  &::placeholder {
+    color: #a1a1aa;
+  }
+
+  &:focus {
+    border-color: #fe9f0a;
+    box-shadow:
+      0 0 0 3px rgba(254, 159, 10, 0.18),
+      0 4px 12px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.selectWrapper {
+  position: relative;
+  width: 100%;
+
+  .selectField {
+    appearance: none;
+    cursor: pointer;
+    padding-right: 2.75rem;
+    background-color: #ffffff;
+  }
+
+  .selectChevron {
+    position: absolute;
+    right: 1.15rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    stroke: #71717a;
+    pointer-events: none;
+    transition: transform 0.2s ease;
+  }
+
+  &:hover .selectChevron {
+    stroke: #18181b;
+  }
+}
+
+.textareaField {
+  resize: vertical;
+  min-height: 145px;
+  line-height: 1.6;
+}
+
+.submitRow {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.4rem;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: #18181b;
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  padding: 0.82rem 2.25rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  transition:
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+  will-change: transform;
+
+  .submitArrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    background-color: #fe9f0a;
+    color: #14100c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(254, 159, 10, 0.4);
+
+    .submitArrow {
+      transform: translateX(3px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98) !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fe9f0a;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+// ----------------------------------------------------
+// Right Column: Info Card & Stay Connected Card
+// ----------------------------------------------------
+.cardsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+// Top Dark Tech Info Card ("Let's Connect")
+.infoCard {
+  position: relative;
+  width: 100%;
+  background-color: #181410; // Dark espresso / charcoal matching design language
+  color: #ffffff;
+  clip-path: $info-card-clip;
+  padding: clamp(2rem, 3.5vw, 2.75rem);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1.85rem;
+  box-sizing: border-box;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.28);
+  }
+}
+
+.infoCardHeader {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.cardMainHeading {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.infoHeadingRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.infoIcon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.infoTitle {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #fe9f0a; // Warm amber header
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.infoText {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #d4d4d8;
+  margin: 0;
+  font-weight: 500;
+  padding-left: 1.55rem;
+}
+
+.infoEmailLink {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #d4d4d8;
+  margin: 0;
+  font-weight: 500;
+  padding-left: 1.55rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #fe9f0a;
+  }
+}
+
+.infoTextOpenTo {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #e4e4e7;
+  margin: 0;
+  font-weight: 500;
+  padding-left: 1.55rem;
+}
+
+// Bottom Orange Card: "Find Me Online"
+.socialCard {
+  position: relative;
+  width: 100%;
+  background-color: #fe9f0a; // Solid warm orange
+  color: #18181b;
+  clip-path: $social-card-clip;
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+  box-shadow: 0 8px 28px rgba(254, 159, 10, 0.25);
+  box-sizing: border-box;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(254, 159, 10, 0.35);
+  }
+}
+
+.socialTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #18181b;
+  margin: 0 0 1.25rem 0;
+  letter-spacing: -0.02em;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+// Social Pill Buttons (GitHub, LinkedIn, Threads)
+.socialPillBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background-color: #18181b;
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  transition:
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s ease;
+  will-change: transform;
+
+  .socialPillText {
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  &:hover {
+    background-color: #ffffff;
+    color: #18181b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.97) !important;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+  }
+}
+
+// ----------------------------------------------------
+// Keyframe Animations
+// ----------------------------------------------------
+@keyframes leafSway {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(4deg) scale(1.04);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes pulseDot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
