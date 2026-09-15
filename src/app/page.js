@@ -1,3 +1,4 @@
+import Preloader from "@/components/layout/Preloader";
 import Navbar from "@/components/layout/Navbar/Navbar";
 import AboutMeSection from "@/components/sections/AboutMeSection/AboutMeSection";
 import Contact from "@/components/sections/Contact/Contact";
@@ -10,6 +11,7 @@ import SkillsProficiency from "@/components/sections/SkillsProficiency/SkillsPro
 export default function Home() {
   return (
     <main>
+      <Preloader />
       <Navbar />
       <Hero />
       <Marquee />
