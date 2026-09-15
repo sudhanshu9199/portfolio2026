@@ -14,6 +14,7 @@ const Contact = () => {
   const formColRef = useRef(null);
   const cardsColRef = useRef(null);
   const leafRef = useRef(null);
+  const successBoxRef = useRef(null);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -21,10 +22,14 @@ const Contact = () => {
     topic: "",
     subject: "",
     message: "",
+    _honeypot: "",
   });
 
+  const [touched, setTouched] = useState({});
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState("idle"); // "idle" | "submitting" | "success" | "error"
+  const [serverError, setServerError] = useState("");
   const [isCopied, setIsCopied] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const emailAddress = "shudhanshukumar9713@gmail.com";
 
@@ -131,24 +136,123 @@ const Contact = () => {
     }, 2500);
   };
 
+  // Client-Side Validation
+  const validateField = (name, value) => {
+    let error = "";
+    if (name === "name") {
+      if (!value.trim()) error = "Name is required";
+      else if (value.trim().length < 2)
+        error = "Name must be at least 2 characters";
+    }
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!value.trim()) error = "Email is required";
+      else if (!emailRegex.test(value.trim()))
+        error = "Please enter a valid email address";
+    }
+    if (name === "topic") {
+      if (!value) error = "Please select a topic";
+    }
+    if (name === "message") {
+      if (!value.trim()) error = "Message is required";
+      else if (value.trim().length < 10)
+        error = "Message must be at least 10 characters";
+    }
+    return error;
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    setTouched((prev) => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors((prev) => ({ ...prev, [name]: error }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  // Full-Stack Form Submission Flow
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        email: "",
-        topic: "",
-        subject: "",
-        message: "",
+
+    // 1. Validate all fields
+    const currentErrors = {
+      name: validateField("name", formData.name),
+      email: validateField("email", formData.email),
+      topic: validateField("topic", formData.topic),
+      message: validateField("message", formData.message),
+    };
+
+    setErrors(currentErrors);
+    setTouched({
+      name: true,
+      email: true,
+      topic: true,
+      message: true,
+    });
+
+    const hasErrors = Object.values(currentErrors).some((err) => err);
+    if (hasErrors) return;
+
+    // 2. Transition to submitting state
+    setStatus("submitting");
+    setServerError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    }, 4000);
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setStatus("success");
+        setFormData({
+          name: "",
+          email: "",
+          topic: "",
+          subject: "",
+          message: "",
+          _honeypot: "",
+        });
+        setTouched({});
+        setErrors({});
+
+        // GSAP celebration fade-in for success box
+        if (successBoxRef.current) {
+          gsap.fromTo(
+            successBoxRef.current,
+            { scale: 0.95, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(1.5)" },
+          );
+        }
+      } else {
+        setStatus("error");
+        setServerError(
+          data.error ||
+            "Something went wrong while sending your message. Please try again or email directly.",
+        );
+      }
+    } catch (err) {
+      console.error("Submission failed:", err);
+      setStatus("error");
+      setServerError(
+        "Network connection error. Please try again or email directly to shudhanshukumar9713@gmail.com.",
+      );
+    }
+  };
+
+  const handleResetForm = () => {
+    setStatus("idle");
+    setServerError("");
   };
 
   return (
@@ -191,7 +295,7 @@ const Contact = () => {
 
         {/* 2-Column Grid: Left Form with Direct Email, Right Info & Social Cards */}
         <div className={styles.contactGrid}>
-          {/* Left Column: Direct Recruiter Email + Streamlined Form */}
+          {/* Left Column: Direct Recruiter Email + Interactive Contact Form */}
           <div className={styles.formCol} ref={formColRef}>
             {/* Direct Email Fast-Action Bar (Recruiter Friendly) */}
             <div className={styles.directEmailBar}>
@@ -249,138 +353,261 @@ const Contact = () => {
               </button>
             </div>
 
-            {/* Contact Form */}
-            <form className={styles.contactForm} onSubmit={handleSubmit}>
-              {/* Row 1: Your Name * & Email * */}
-              <div className={styles.formRow}>
-                <div className={styles.fieldGroup}>
-                  <label htmlFor="name" className={styles.fieldLabel}>
-                    Your Name *
-                  </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Enter your name"
-                    className={styles.inputField}
-                  />
-                </div>
-
-                <div className={styles.fieldGroup}>
-                  <label htmlFor="email" className={styles.fieldLabel}>
-                    Email *
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    className={styles.inputField}
-                  />
-                </div>
-              </div>
-
-              {/* Row 2: I'm reaching out about * (Dropdown) */}
-              <div className={styles.fieldGroup}>
-                <label htmlFor="topic" className={styles.fieldLabel}>
-                  I&apos;m reaching out about *
-                </label>
-                <div className={styles.selectWrapper}>
-                  <select
-                    id="topic"
-                    name="topic"
-                    required
-                    value={formData.topic}
-                    onChange={handleChange}
-                    className={styles.selectField}
-                  >
-                    <option value="" disabled>
-                      Select a topic...
-                    </option>
-                    <option value="Job Opportunity">Job Opportunity</option>
-                    <option value="Collaboration">Collaboration</option>
-                    <option value="Project">Project</option>
-                    <option value="Freelance Work">Freelance Work</option>
-                    <option value="Other">Other</option>
-                  </select>
+            {/* Success State Screen */}
+            {status === "success" ? (
+              <div
+                className={styles.successStateContainer}
+                ref={successBoxRef}
+                role="alert"
+              >
+                <div className={styles.successIconCircle}>
                   <svg
-                    className={styles.selectChevron}
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    strokeWidth="2.4"
+                    strokeWidth="2.8"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    aria-hidden="true"
                   >
-                    <polyline points="6 9 12 15 18 9" />
+                    <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
+                <h3 className={styles.successTitle}>Message Sent!</h3>
+                <p className={styles.successMessage}>
+                  Message sent! Thanks for reaching out. I&apos;ll get back to
+                  you soon.
+                </p>
+                <button
+                  type="button"
+                  onClick={handleResetForm}
+                  className={styles.sendAnotherBtn}
+                >
+                  Send another message
+                </button>
               </div>
-
-              {/* Row 3: Subject (Optional / Descriptive) */}
-              <div className={styles.fieldGroup}>
-                <label htmlFor="subject" className={styles.fieldLabel}>
-                  Subject
-                </label>
+            ) : (
+              /* Contact Form */
+              <form
+                className={styles.contactForm}
+                onSubmit={handleSubmit}
+                noValidate
+              >
+                {/* Honeypot field (hidden from sighted users, traps bots) */}
                 <input
-                  id="subject"
-                  name="subject"
                   type="text"
-                  value={formData.subject}
+                  name="_honeypot"
+                  value={formData._honeypot}
                   onChange={handleChange}
-                  placeholder="What's this about?"
-                  className={styles.inputField}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ display: "none" }}
+                  aria-hidden="true"
                 />
-              </div>
 
-              {/* Row 4: Message * */}
-              <div className={styles.fieldGroup}>
-                <label htmlFor="message" className={styles.fieldLabel}>
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell me a little about what you're working on..."
-                  className={styles.textareaField}
-                />
-              </div>
-
-              {/* Submit Button: Send Message → */}
-              <div className={styles.submitRow}>
-                <button type="submit" className={styles.submitBtn}>
-                  <span>
-                    {isSubmitted ? "Message Sent! ✓" : "Send Message"}
-                  </span>
-                  {!isSubmitted && (
+                {/* Server Error Alert */}
+                {status === "error" && (
+                  <div className={styles.errorBanner} role="alert">
                     <svg
-                      className={styles.submitArrow}
+                      className={styles.errorIcon}
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      strokeWidth="2.5"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="12" y1="8" x2="12" y2="12" />
+                      <line x1="12" y1="16" x2="12.01" y2="16" />
+                    </svg>
+                    <span>{serverError}</span>
+                  </div>
+                )}
+
+                {/* Row 1: Your Name * & Email * */}
+                <div className={styles.formRow}>
+                  <div className={styles.fieldGroup}>
+                    <label htmlFor="name" className={styles.fieldLabel}>
+                      Your Name *
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={status === "submitting"}
+                      placeholder="Enter your name"
+                      className={`${styles.inputField} ${
+                        touched.name && errors.name ? styles.fieldError : ""
+                      }`}
+                    />
+                    {touched.name && errors.name && (
+                      <span className={styles.fieldErrorText}>
+                        {errors.name}
+                      </span>
+                    )}
+                  </div>
+
+                  <div className={styles.fieldGroup}>
+                    <label htmlFor="email" className={styles.fieldLabel}>
+                      Email *
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={status === "submitting"}
+                      placeholder="you@example.com"
+                      className={`${styles.inputField} ${
+                        touched.email && errors.email ? styles.fieldError : ""
+                      }`}
+                    />
+                    {touched.email && errors.email && (
+                      <span className={styles.fieldErrorText}>
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Row 2: I'm reaching out about * (Dropdown) */}
+                <div className={styles.fieldGroup}>
+                  <label htmlFor="topic" className={styles.fieldLabel}>
+                    I&apos;m reaching out about *
+                  </label>
+                  <div className={styles.selectWrapper}>
+                    <select
+                      id="topic"
+                      name="topic"
+                      required
+                      value={formData.topic}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      disabled={status === "submitting"}
+                      className={`${styles.selectField} ${
+                        touched.topic && errors.topic ? styles.fieldError : ""
+                      }`}
+                    >
+                      <option value="" disabled>
+                        Select a topic...
+                      </option>
+                      <option value="Job Opportunity">Job Opportunity</option>
+                      <option value="Collaboration">Collaboration</option>
+                      <option value="Project">Project</option>
+                      <option value="Freelance Work">Freelance Work</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    <svg
+                      className={styles.selectChevron}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       aria-hidden="true"
                     >
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
+                      <polyline points="6 9 12 15 18 9" />
                     </svg>
+                  </div>
+                  {touched.topic && errors.topic && (
+                    <span className={styles.fieldErrorText}>
+                      {errors.topic}
+                    </span>
                   )}
-                </button>
-              </div>
-            </form>
+                </div>
+
+                {/* Row 3: Subject (Optional / Descriptive) */}
+                <div className={styles.fieldGroup}>
+                  <label htmlFor="subject" className={styles.fieldLabel}>
+                    Subject
+                  </label>
+                  <input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    disabled={status === "submitting"}
+                    placeholder="What's this about?"
+                    className={styles.inputField}
+                  />
+                </div>
+
+                {/* Row 4: Message * */}
+                <div className={styles.fieldGroup}>
+                  <div className={styles.messageLabelRow}>
+                    <label htmlFor="message" className={styles.fieldLabel}>
+                      Message *
+                    </label>
+                    <span className={styles.charCount}>
+                      {formData.message.length} chars
+                    </span>
+                  </div>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    disabled={status === "submitting"}
+                    placeholder="Tell me a little about what you're working on..."
+                    className={`${styles.textareaField} ${
+                      touched.message && errors.message ? styles.fieldError : ""
+                    }`}
+                  />
+                  {touched.message && errors.message && (
+                    <span className={styles.fieldErrorText}>
+                      {errors.message}
+                    </span>
+                  )}
+                </div>
+
+                {/* Submit Button: Send Message → */}
+                <div className={styles.submitRow}>
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className={`${styles.submitBtn} ${
+                      status === "submitting" ? styles.loading : ""
+                    }`}
+                  >
+                    {status === "submitting" ? (
+                      <>
+                        <span className={styles.spinner} aria-hidden="true" />
+                        <span>Sending message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <svg
+                          className={styles.submitArrow}
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
 
           {/* Right Column: Tailored Professional Info Card + Find Me Online Card */}
