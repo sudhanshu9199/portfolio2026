@@ -16,40 +16,27 @@ export default function Hero() {
 
   const { contextSafe } = useGSAP(
     () => {
-      let executed = false;
-      const playEntrance = () => {
-        if (executed) return;
-        executed = true;
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-        if (badgeRef.current) {
-          tl.from(badgeRef.current, {
-            y: -20,
+      if (badgeRef.current) {
+        tl.from(badgeRef.current, {
+          y: -16,
+          opacity: 0,
+          duration: 0.7,
+        });
+      }
+
+      if (headlineRef.current) {
+        tl.from(
+          headlineRef.current,
+          {
+            y: 28,
             opacity: 0,
             duration: 0.8,
-          });
-        }
-
-        if (headlineRef.current) {
-          tl.from(
-            headlineRef.current,
-            {
-              y: 40,
-              opacity: 0,
-              duration: 1,
-            },
-            "-=0.4",
-          );
-        }
-      };
-
-      window.addEventListener("portfolio:unmasked", playEntrance);
-      const timer = setTimeout(playEntrance, 2400);
-
-      return () => {
-        window.removeEventListener("portfolio:unmasked", playEntrance);
-        clearTimeout(timer);
-      };
+          },
+          "-=0.4",
+        );
+      }
     },
     { scope: heroRef },
   );

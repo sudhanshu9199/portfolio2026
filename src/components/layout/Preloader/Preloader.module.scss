@@ -1,5 +1,5 @@
 // ----------------------------------------------------
-// Ultra-Premium 2026 Preloader & Reveal Overlays
+// 2026 Developer Portfolio Preloader & Shutter Reveal
 // ----------------------------------------------------
 
 .preloaderOverlay {
@@ -12,9 +12,78 @@
   pointer-events: auto;
   user-select: none;
   overflow: hidden;
+  background-color: transparent; // CRITICAL: Transparent container eliminates any post-animation pop or black jerk!
 }
 
-// Secondary Amber Blade (Trailing Rim Layer)
+// ----------------------------------------------------
+// 5-Column Architectural Shutter Wave
+// ----------------------------------------------------
+.shuttersContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shutterColumn {
+  position: absolute;
+  top: 0;
+  width: 20.25%; // Slight overlap to prevent subpixel seams
+  height: 100%;
+  background-color: #12100e;
+  will-change: transform;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+
+  // Technical blueprint grid pattern embedded inside each column (slides with the column!)
+  .columnGridPattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; // Aligned with the global viewport grid
+    height: 100vh;
+    pointer-events: none;
+    opacity: 0.32;
+    background-size: 34px 34px;
+    background-image:
+      linear-gradient(to right, rgba(254, 159, 10, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(254, 159, 10, 0.08) 1px, transparent 1px);
+    mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 90%);
+  }
+
+  // Vertical amber seam division line
+  .columnSeam {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(254, 159, 10, 0) 0%,
+      rgba(254, 159, 10, 0.28) 50%,
+      rgba(254, 159, 10, 0) 100%
+    );
+  }
+
+  // Glowing amber laser bottom lip (cuts upward as column lifts)
+  .shutterLip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #fe9f0a 0%, #ffc062 100%);
+    box-shadow: 0 0 14px rgba(254, 159, 10, 0.9);
+  }
+}
+
+// Underlying Amber Rim Curtain (Sweeps behind the 5 columns)
 .amberCurtain {
   position: absolute;
   top: 0;
@@ -26,99 +95,142 @@
   will-change: transform;
 }
 
-// Main Deep Espresso Curtain
-.mainCurtain {
+// ----------------------------------------------------
+// Corner Technical Crosshairs & Telemetry
+// ----------------------------------------------------
+.cornerTelemetry {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #12100e;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  will-change: transform;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-// Organic SVG Curtain Lip (Morphed during upward sweep)
-.curveSvg {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: clamp(80px, 14vh, 160px);
+  z-index: 4;
   pointer-events: none;
-  transform: translateY(99%);
-  will-change: transform;
-
-  path {
-    will-change: d;
-  }
-}
-
-// Central Interactive Stage
-.contentStage {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  max-width: 860px;
-  padding: 2rem clamp(1.5rem, 5vw, 3.5rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 80vh;
-  max-height: 700px;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  box-sizing: border-box;
+  font-family: var(--font-geist-mono), monospace;
   will-change: transform, opacity;
 }
 
+.cornerBox {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: clamp(0.68rem, 1vw, 0.78rem);
+  letter-spacing: 0.06em;
+  color: #71717a;
+
+  .crosshair {
+    color: #fe9f0a;
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(254, 159, 10, 0.6);
+  }
+
+  .cornerText {
+    color: #a1a1aa;
+    font-weight: 500;
+  }
+
+  .cornerTextHighlight {
+    color: #fe9f0a;
+    font-weight: 600;
+    background: rgba(254, 159, 10, 0.1);
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    border: 1px solid rgba(254, 159, 10, 0.25);
+  }
+}
+
+.topLeft {
+  top: clamp(1.25rem, 3vw, 2.25rem);
+  left: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.topRight {
+  top: clamp(1.25rem, 3vw, 2.25rem);
+  right: clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.bottomLeft {
+  bottom: clamp(1.25rem, 3vw, 2.25rem);
+  left: clamp(1.25rem, 3vw, 2.25rem);
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.bottomRight {
+  bottom: clamp(1.25rem, 3vw, 2.25rem);
+  right: clamp(1.25rem, 3vw, 2.25rem);
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
 // ----------------------------------------------------
-// Top Meta Header (Cyber-Editorial Details)
+// Central Interactive Stage
 // ----------------------------------------------------
-.metaRow {
+.contentStage {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 4.5vw, 3rem);
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  height: 82vh;
+  max-height: 720px;
+  will-change: transform, opacity;
+  box-sizing: border-box;
+
+  @media (max-width: 600px) {
+    height: 88vh;
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+// Top Central Status Badge
+.topMetaRow {
+  display: flex;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(0.74rem, 1.2vw, 0.86rem);
-  letter-spacing: 0.04em;
-  color: #a1a1aa;
 }
 
 .metaBadge {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 0.35rem 0.85rem;
+  background: rgba(24, 20, 16, 0.7);
+  border: 1px solid rgba(254, 159, 10, 0.25);
+  padding: 0.45rem 1.15rem;
   border-radius: 999px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
 }
 
 .pulseDot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: #fe9f0a;
-  box-shadow: 0 0 10px rgba(254, 159, 10, 0.8);
+  box-shadow: 0 0 12px rgba(254, 159, 10, 0.9);
   animation: pulse 1.6s ease-in-out infinite;
 }
 
 .metaText {
-  color: #e4e4e7;
-  font-weight: 500;
-}
-
-.metaEdition {
-  color: #71717a;
-  font-weight: 400;
-
-  @media (max-width: 600px) {
-    display: none;
-  }
+  font-family: var(--font-geist-mono), monospace;
+  font-size: clamp(0.72rem, 1.1vw, 0.84rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #f4f4f5;
 }
 
 // ----------------------------------------------------
@@ -130,7 +242,7 @@
   align-items: center;
   text-align: center;
   margin: auto 0;
-  gap: 1.65rem;
+  gap: 1.75rem;
 }
 
 .iconRing {
@@ -138,15 +250,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 84px;
+  height: 84px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(254, 159, 10, 0.12) 0%, rgba(254, 159, 10, 0) 70%);
-  border: 1px solid rgba(254, 159, 10, 0.25);
-  box-shadow: 0 0 35px rgba(254, 159, 10, 0.15);
+  background: radial-gradient(circle, rgba(254, 159, 10, 0.16) 0%, rgba(254, 159, 10, 0) 70%);
+  border: 1.5px solid rgba(254, 159, 10, 0.35);
+  box-shadow: 0 0 40px rgba(254, 159, 10, 0.22);
 
   .brandIcon {
-    animation: slowRotate 14s linear infinite;
+    animation: slowRotate 16s linear infinite;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px dashed rgba(254, 159, 10, 0.2);
+    animation: slowRotateCounter 28s linear infinite;
   }
 }
 
@@ -158,13 +279,13 @@
 }
 
 .brandName {
-  font-size: clamp(2rem, 5.2vw, 3.8rem);
+  font-size: clamp(2.1rem, 5.5vw, 4rem);
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #ffffff;
   margin: 0;
-  line-height: 1.1;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+  line-height: 1.08;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
 }
 
 .brandSubtitle {
@@ -172,7 +293,7 @@
   align-items: center;
   gap: 0.65rem;
   font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(0.75rem, 1.3vw, 0.9rem);
+  font-size: clamp(0.74rem, 1.3vw, 0.92rem);
   font-weight: 600;
   letter-spacing: 0.08em;
   color: #a1a1aa;
@@ -184,16 +305,17 @@
 
   .highlight {
     color: #fe9f0a;
+    text-shadow: 0 0 12px rgba(254, 159, 10, 0.5);
   }
 }
 
 // ----------------------------------------------------
-// Bottom Stage: Tabular Monospace Odometer & Tracker
+// Bottom Stage: Milestone Stream & Tabular Odometer
 // ----------------------------------------------------
 .bottomStage {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0.95rem;
   width: 100%;
 }
 
@@ -202,31 +324,56 @@
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
+  gap: 1rem;
+}
+
+.statusCol {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.terminalPrompt {
+  font-family: var(--font-geist-mono), monospace;
+  color: #fe9f0a;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1;
+  animation: blink 1s step-start infinite;
 }
 
 .statusLabel {
   font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(0.72rem, 1.1vw, 0.82rem);
-  letter-spacing: 0.05em;
-  color: #71717a;
+  font-size: clamp(0.72rem, 1.15vw, 0.85rem);
+  letter-spacing: 0.04em;
+  color: #d4d4d8;
   text-transform: uppercase;
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.counterWrapper {
+  flex-shrink: 0;
 }
 
 .counterText {
   font-family: var(--font-geist-mono), monospace;
-  font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
   font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
-  line-height: 0.9;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+  line-height: 0.88;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .progressBarTrack {
   width: 100%;
-  height: 2.5px;
+  height: 3px;
   background-color: rgba(255, 255, 255, 0.08);
   border-radius: 999px;
   overflow: hidden;
@@ -236,15 +383,15 @@
 .progressBarFill {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #fe9f0a 0%, #ffc062 100%);
+  background: linear-gradient(90deg, #fe9f0a 0%, #ffbe5b 100%);
   border-radius: 999px;
   transform: scaleX(0);
   transform-origin: left center;
-  box-shadow: 0 0 12px rgba(254, 159, 10, 0.8);
+  box-shadow: 0 0 14px rgba(254, 159, 10, 0.9);
 }
 
 // ----------------------------------------------------
-// Keyframe Micro-Motions
+// Keyframe Animations
 // ----------------------------------------------------
 @keyframes pulse {
   0%, 100% {
@@ -253,7 +400,7 @@
   }
   50% {
     transform: scale(1.3);
-    opacity: 0.6;
+    opacity: 0.55;
   }
 }
 
@@ -263,5 +410,20 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slowRotateCounter {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }

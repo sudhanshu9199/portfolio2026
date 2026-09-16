@@ -9,15 +9,16 @@
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  background-color: #f5f4ea;
 }
 
 body {
   min-height: 100vh;
-  background-color: $bg-primary;
-  color: $text-primary;
+  background-color: #f5f4ea;
+  color: #111111;
   font-family: $font-sans;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
