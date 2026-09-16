@@ -1,0 +1,120 @@
+// ----------------------------------------------------
+// Portfolio Footer Bar - Modern Motion & Tech Aesthetic
+// ----------------------------------------------------
+
+.footer {
+  width: 100%;
+  position: relative;
+  background-color: #110e0b; // Deep dark espresso / black matching reference
+  color: #d4d4d8;
+  overflow: hidden;
+}
+
+// Bold Top Orange Stripe (Continuous visual boundary)
+.topAccentStripe {
+  width: 100%;
+  height: 5px;
+  background-color: #fe9f0a; // Vibrant warm orange matching reference image
+  box-shadow: 0 1px 10px rgba(254, 159, 10, 0.4);
+}
+
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: clamp(1.4rem, 2.8vw, 1.9rem) clamp(1.5rem, 5.5vw, 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.6rem 1.25rem;
+  }
+}
+
+// ----------------------------------------------------
+// Left Side: Copyright
+// ----------------------------------------------------
+.copyrightBlock {
+  font-size: clamp(0.88rem, 1.2vw, 0.96rem);
+  font-weight: 400;
+  color: #d4d4d8;
+  letter-spacing: -0.01em;
+  user-select: none;
+
+  .nameHighlight {
+    color: #fe9f0a; // Signature vibrant amber
+    font-weight: 600;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+    cursor: default;
+
+    &:hover {
+      color: #ffbe5b;
+      text-shadow: 0 0 10px rgba(254, 159, 10, 0.6);
+    }
+  }
+}
+
+// ----------------------------------------------------
+// Right Side: Links & Divider
+// ----------------------------------------------------
+.linksBlock {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: clamp(0.86rem, 1.15vw, 0.94rem);
+  font-weight: 400;
+  color: #d4d4d8;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .divider {
+    color: rgba(255, 255, 255, 0.28);
+    font-weight: 300;
+    margin: 0 0.15rem;
+    user-select: none;
+  }
+}
+
+.footerLink {
+  color: #d4d4d8;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease;
+  will-change: transform;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #fe9f0a;
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  &:hover {
+    color: #fe9f0a;
+    transform: translateY(-1px);
+
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fe9f0a;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}

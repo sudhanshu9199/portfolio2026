@@ -1,5 +1,6 @@
 import Preloader from "@/components/layout/Preloader";
 import Navbar from "@/components/layout/Navbar/Navbar";
+import Footer from "@/components/layout/Footer";
 import AboutMeSection from "@/components/sections/AboutMeSection/AboutMeSection";
 import Contact from "@/components/sections/Contact/Contact";
 import Hero from "@/components/sections/Hero/Hero";
@@ -20,6 +21,7 @@ export default function Home() {
       <SkillsProficiency />
       <Projects />
       <Contact />
+      <Footer />
     </main>
   );
 }
