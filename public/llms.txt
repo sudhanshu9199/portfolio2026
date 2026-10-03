@@ -1,0 +1,69 @@
+# Sudhanshu Ghosh — AI & Full-Stack Developer
+
+> Building AI-powered web applications with React, Next.js, Node.js, MongoDB, and modern AI APIs. Specializing in real-time WebSockets/WebRTC systems and Generative AI workflows.
+
+## Identity & Professional Overview
+- **Name**: Sudhanshu Ghosh
+- **Professional Title**: AI & Full-Stack Developer
+- **Primary Market**: India-based engineering roles & Global remote teams
+- **Official Portfolio**: https://sudhanshu-portfolio26.netlify.app/
+- **Availability**: Actively open to full-time Software Engineer, Frontend Engineer, and Full-Stack AI Engineer opportunities.
+
+## Verified Authority Links (Entity Anchors)
+- **GitHub**: https://github.com/sudhanshu9199
+- **LinkedIn**: https://linkedin.com/in/sudhanshu9199
+- **Threads**: https://www.threads.net/@sudhanshu_9199
+- **HackerRank**: https://www.hackerrank.com/profile/sudhanshu9199
+
+---
+
+## 3-Layer Expertise Graph
+
+### Layer 1: Core Foundation (AI-Powered Full-Stack Engineering)
+- **Frontend**: React.js, Next.js (App Router, Server Components), HTML5, CSS3/Sass, Responsive UI Architecture, GSAP Animation.
+- **Backend**: Node.js, Express.js, RESTful API Design, JWT Authentication, Middleware, Server Architecture.
+- **Database & Data Modeling**: MongoDB, Mongoose, schema design, indexing, CRUD operations.
+- **Tooling**: Git, GitHub, npm, Vercel, Netlify, VS Code.
+
+### Layer 2: Differentiation (Real-Time + AI Web Applications)
+- **Real-Time Protocols**: Socket.io, WebSockets, WebRTC (peer-to-peer audio/video streaming, data channels).
+- **Interactive Collaboration**: Real-time multi-user chat, presence detection, live updates, low-latency state synchronization.
+- **Streaming AI**: Real-time token streaming UX, prompt pipeline design, resilient API error fallbacks.
+- **Architecture**: Modular component systems, predictable state flow, 60fps micro-animations.
+
+### Layer 3: Emerging Specialization (Generative AI Application Development)
+- **Model APIs**: Google Gemini API, OpenAI API integrations.
+- **LLM Engineering**: Prompt engineering, structured JSON outputs, system instructions, context window optimization.
+- **Multimodal AI**: Image analysis, vision-to-text generation, contextual dialogue chaining.
+- **AI UX**: Intelligent auto-replies, conversational user interfaces, generative captioning pipelines.
+
+---
+
+## Flagship Projects
+
+### 1. ConnectX — Real-Time Communication Platform
+- **Description**: Real-time communication platform enabling chat, voice, and video calling with adaptive video quality and AI-powered smart reply suggestions.
+- **Architecture**: Peer-to-peer WebRTC connections with Socket.io signaling, Express backend, Redux Toolkit state management, and integrated generative AI reply suggestions.
+- **Tech Stack**: Node.js, Express.js, Socket.io, WebRTC, Redux Toolkit, React, Generative AI.
+- **Live Demo**: https://connectx-chat-with.netlify.app/
+- **Source Code**: https://github.com/sudhanshu9199/chat-APP-Like
+
+### 2. AURA — AI Conversational Assistant
+- **Description**: Intelligent AI chat application powered by Gemini API, designed for natural, context-aware dialogues retaining historical thread memory.
+- **Architecture**: React frontend with streaming response rendering, serverless Gemini API integration, and adaptive theme controls.
+- **Tech Stack**: React, JavaScript, Gemini API, AI Integration.
+- **Live Demo**: https://first-chatbot-ai.netlify.app/
+- **Source Code**: https://github.com/sudhanshu9199/AI-ChatBot
+
+### 3. Caption Generator AI — Multimodal Social Media Tool
+- **Description**: Multimodal AI application analyzing uploaded images and automatically generating engaging, contextual captions for social media publishing.
+- **Architecture**: Vision model pipeline, JWT user authentication, MongoDB storage for saved generations, and React/Vite client interface.
+- **Tech Stack**: React, Vite, MongoDB, JWT, Multimodal AI APIs, Prompt Engineering.
+- **Live Demo**: https://caption-generator-ai.netlify.app/
+- **Source Code**: https://github.com/sudhanshu9199/caption-generator-AI
+
+---
+
+## Full Documentation
+For complete project deep dives, technical essays, and detailed architectural notes, see:
+- Full LLM Context: https://sudhanshu-portfolio26.netlify.app/llms-full.txt

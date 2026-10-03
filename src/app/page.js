@@ -8,6 +8,7 @@ import Marquee from "@/components/sections/Marquee/Marquee";
 import MyExpertise from "@/components/sections/MyExpertise/MyExpertise";
 import Projects from "@/components/sections/Projects/Projects";
 import SkillsProficiency from "@/components/sections/SkillsProficiency/SkillsProficiency";
+import FAQSection from "@/components/sections/FAQSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <AboutMeSection />
       <SkillsProficiency />
       <Projects />
+      <FAQSection />
       <Contact />
       <Footer />
     </main>

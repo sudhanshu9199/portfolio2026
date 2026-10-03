@@ -40,10 +40,7 @@ export default function Navbar() {
             <Link href="#projects">Projects</Link>
           </li>
           <li>
-            <Link href="#experience">Experience</Link>
-          </li>
-          <li>
-            <Link href="#blog">Blog</Link>
+            <Link href="#faq">FAQ</Link>
           </li>
         </ul>
 
@@ -95,13 +92,8 @@ export default function Navbar() {
               </Link>
             </li>
             <li>
-              <Link href="#experience" onClick={() => setIsOpen(false)}>
-                Experience
-              </Link>
-            </li>
-            <li>
-              <Link href="#blog" onClick={() => setIsOpen(false)}>
-                Blog
+              <Link href="#faq" onClick={() => setIsOpen(false)}>
+                FAQ
               </Link>
             </li>
             <li className={styles.mobileCtaItem}>

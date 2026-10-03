@@ -31,6 +31,18 @@ export default function Footer() {
           <Link href="#privacy" className={styles.footerLink}>
             Privacy Policy
           </Link>
+          <span className={styles.divider} aria-hidden="true">
+            |
+          </span>
+          <a
+            href="/llms.txt"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.footerLink}
+            title="LLM Context & AI Agent Documentation"
+          >
+            llms.txt
+          </a>
         </div>
       </div>
     </footer>

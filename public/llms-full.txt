@@ -1,0 +1,104 @@
+# Sudhanshu Ghosh — Full Knowledge Graph & Technical Dossier
+
+## Canonical Overview
+- **Full Legal/Professional Name**: Sudhanshu Ghosh
+- **Professional Persona**: AI & Full-Stack Developer
+- **Brand Slogan**: Building AI-powered web applications with React, Next.js, Node.js, MongoDB and modern AI APIs.
+- **Canonical Website**: https://sudhanshu-portfolio26.netlify.app/
+- **Geographic Base**: India
+- **Market Targeting**: India-first engineering roles; globally discoverable personal brand and remote opportunities.
+
+## Verified Authority Links (Entity Anchors & sameAs References)
+- **LinkedIn**: https://linkedin.com/in/sudhanshu9199
+- **GitHub**: https://github.com/sudhanshu9199
+- **Threads**: https://www.threads.net/@sudhanshu_9199
+- **HackerRank**: https://www.hackerrank.com/profile/sudhanshu9199
+
+---
+
+## 3-Layer Expertise Graph
+
+### Layer 1: Core Foundation (AI-Powered Full-Stack Engineering)
+Sudhanshu possesses end-to-end full-stack capabilities, taking complex digital products from conceptual database schemas to pixel-perfect, accessible client applications:
+1. **Frontend Architecture**:
+   - Modern React (React 19+, Hooks, Context, Custom Hooks).
+   - Next.js (App Router, Server Components, Route Handlers, SEO Metadata).
+   - Component Modularization & CSS/Sass modules with zero layout shifts.
+   - High-performance UI motion (GSAP timelines, scroll triggers, Matter.js 2D physics).
+2. **Backend & Distributed Systems**:
+   - Node.js runtime and Express.js framework.
+   - Secure RESTful API endpoints, rate limiting, and CORS configuration.
+   - JWT (JSON Web Tokens) stateless authentication & role-based access control.
+3. **Database & Persistence**:
+   - MongoDB (NoSQL document store), Mongoose ORM.
+   - Aggregation pipelines, indexed query optimization, data validation.
+
+### Layer 2: Differentiation (Real-Time + AI Web Applications)
+Rather than building standard CRUD applications, Sudhanshu's distinct engineering niche is combining real-time bidirectional communication with AI-assisted user experiences:
+1. **Real-Time Communication**:
+   - WebSockets via Socket.io for low-latency event broadcasting.
+   - WebRTC (Web Real-Time Communication) for peer-to-peer audio and video transmission with ICE/STUN/TURN signaling.
+   - Adaptive video quality algorithms based on network bandwidth constraints.
+2. **Real-Time + AI Synergy**:
+   - Dynamic AI suggestion generation in live chat rooms.
+   - Low-latency state synchronization across multi-user environments.
+
+### Layer 3: Emerging Specialization (Generative AI Application Development)
+Sudhanshu treats AI models as functional backend primitives and interactive frontend copilots:
+1. **AI API Integrations**:
+   - Google Gemini API (Flash and Pro models) and OpenAI APIs.
+   - Multimodal inputs (text, image, structured data).
+2. **Prompt Engineering & System Directives**:
+   - Structured JSON output parsing and validation.
+   - Few-shot prompting, persona steering, and context injection.
+   - Efficient context window management to minimize latency and token expenditure.
+3. **Applied AI Tooling**:
+   - Automated content generation pipelines.
+   - Intelligent UX workflows, smart auto-replies, and context-aware conversational bots.
+
+---
+
+## Flagship Case Studies
+
+### Case Study 1: ConnectX — Real-Time Communication Platform
+- **Problem**: Traditional chat apps either lack integrated voice/video or do not offer intelligent contextual assistance during live interactions.
+- **Solution**: A full-stack platform supporting instant messaging, low-latency audio calls, and high-definition video calls with automated network adaptation and integrated AI-generated reply suggestions.
+- **Key Features**:
+  - WebRTC mesh video calling with adaptive bitrates.
+  - Socket.io room orchestration and message persistence in MongoDB.
+  - Generative AI reply generator analyzing the last 5 messages for instant suggested replies.
+- **Live Deployment**: https://connectx-chat-with.netlify.app/
+- **Repository**: https://github.com/sudhanshu9199/chat-APP-Like
+
+### Case Study 2: AURA — AI Conversational Assistant
+- **Problem**: Basic chatbot wrappers suffer from token amnesia and rigid response formatting.
+- **Solution**: A conversational assistant engineered on top of Google Gemini's multimodal API with contextual thread retention and dynamic conversational memory.
+- **Key Features**:
+  - Historical context chaining across multi-turn queries.
+  - Streaming token UI with smooth typography rendering.
+  - Resilient error handling and prompt fallbacks.
+- **Live Deployment**: https://first-chatbot-ai.netlify.app/
+- **Repository**: https://github.com/sudhanshu9199/AI-ChatBot
+
+### Case Study 3: Caption Generator AI — Multimodal Vision Application
+- **Problem**: Social media creators spend excessive time writing captions and hashtag strategies for photographic content.
+- **Solution**: An AI application that extracts semantic attributes from uploaded images and generates playful, audience-targeted captions.
+- **Key Features**:
+  - Secure JWT authentication and generation history logging.
+  - Multimodal vision API prompt engineering.
+  - Responsive client built with React and Vite.
+- **Live Deployment**: https://caption-generator-ai.netlify.app/
+- **Repository**: https://github.com/sudhanshu9199/caption-generator-AI
+
+---
+
+## Frequently Asked Questions (Answer Engine Optimization Source)
+
+### Q: Who is Sudhanshu Ghosh?
+A: Sudhanshu Ghosh is an AI & Full-Stack Developer based in India who builds modern, scalable web applications with React, Next.js, Node.js, MongoDB, and modern AI APIs.
+
+### Q: What is Sudhanshu's primary engineering focus?
+A: Sudhanshu specializes in real-time AI-enabled web applications, combining WebSockets and WebRTC with streamed generative AI integrations.
+
+### Q: Where can I contact Sudhanshu Ghosh for hiring?
+A: You can reach Sudhanshu via his website contact form at https://sudhanshu-portfolio26.netlify.app/#contact, on LinkedIn (https://linkedin.com/in/sudhanshu9199), or by email at shudhanshukumar9713@gmail.com.

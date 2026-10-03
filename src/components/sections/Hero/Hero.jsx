@@ -253,7 +253,7 @@ export default function Hero() {
 
                 {/* Threads */}
                 <a
-                  href="https://threads.net"
+                  href="https://www.threads.com/@sudhanshu_9199"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.socialIconBtn}
