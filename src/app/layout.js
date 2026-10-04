@@ -56,7 +56,9 @@ export const metadata = {
     apple: "/assets/pageLogo.png",
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+      "4LHoMQTiAajY_EUJ_kabbxOzuFcDtOsBT-hLoouKJHI",
   },
   category: "technology",
 };
