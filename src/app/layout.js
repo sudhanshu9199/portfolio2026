@@ -55,6 +55,9 @@ export const metadata = {
     icon: "/favicon.ico",
     apple: "/assets/pageLogo.png",
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+  },
   category: "technology",
 };
 

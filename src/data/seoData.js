@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "Sudhanshu Ghosh",
-  title: "Sudhanshu Ghosh | AI & Full-Stack Developer",
-  shortTitle: "Sudhanshu Ghosh — AI & Full-Stack Developer",
+  title: "Sudhanshu Ghosh — Portfolio | AI & Full-Stack Developer",
+  shortTitle: "Sudhanshu Ghosh Portfolio | AI & Full-Stack Engineer",
   description:
     "AI & Full-Stack Developer building modern, scalable web applications with React, Next.js, Node.js, MongoDB, and modern AI APIs. Specializing in real-time WebRTC/Socket.io systems and Generative AI workflows.",
   url: "https://sudhanshu-portfolio26.netlify.app",
